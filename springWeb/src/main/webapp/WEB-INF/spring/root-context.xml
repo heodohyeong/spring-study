@@ -10,7 +10,7 @@
 		<property name="location">
 			<value>classpath:db.properties</value>
 		</property>
-	</bean>	
+	</bean>
 	
 	<!-- db.properties의 설정 값을 읽어서 setting -->
  	<bean id="dataSource"
