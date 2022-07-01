@@ -10,5 +10,12 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+
+<c:forEach items="${list}" var="site" varStatus="status">
+	${site.SITE_NM }
+</c:forEach>
+
+
 </body>
 </html>
