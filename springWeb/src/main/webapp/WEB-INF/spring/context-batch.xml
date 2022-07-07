@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	
+	<!--컴포넌트 스켄을 해야만 @컴포넌트 어노테이션을 인식 할 수 있다. -->
+	<!-- <context:component-scan base-package="com.devmg.app" />  -->
+	<!-- 스케쥴러 클래스 정의  -->
+	<bean id="sampleTest" class="my.first.spring.batch.SampleBatchController"/>
+	
+    <bean id="jobBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+    	<property name="targetObject" ref="sampleTest" />  <!--컴포넌 설정 -->
+    	<property name="targetMethod" value="sampleBatch" /> <!-- Method 설정 -->
+    	<property name="concurrent" value="false" /> <!-- 동시실행 기능 방지한다-->
+    </bean>
+    <!-- 트리거 설정 --> 
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+    	<property name="jobDetail" 	ref="jobBean" /> 
+    	<property name="startDelay" value="1000" /> <!-- 서버 가동 후 시작할 시간   설정(단위: millisecond)  -->
+    	<property name="repeatInterval" value="10000" />  <!--반복  시간 설정 설정(단위: millisecond)  -->
+	</bean>
+
+	<!-- 스케줄러 설정 -->
+	<bean id="jobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"> 
+		<property name="triggers"> 
+			<list> 
+				<!-- 앞에서 설정한 트리거를 등록합니다. 필요하면 여러개 만들어서 등록하면 된다. -->
+				<ref bean="jobTrigger"/> 
+			</list> 
+		</property> 
+	</bean>
+</beans>
