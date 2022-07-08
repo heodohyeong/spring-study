@@ -13,5 +13,6 @@ public class SampleBatchController {
 		log.debug("log test");
 		System.out.println("배치시작");
 		System.out.println("배치종료");
+		log.info("info");
 	}
 }
