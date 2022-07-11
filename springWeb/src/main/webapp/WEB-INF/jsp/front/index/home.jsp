@@ -15,7 +15,7 @@
 <c:forEach items="${list}" var="site" varStatus="status">
 	${site.SITE_NM }
 </c:forEach>
- 
+  
 
 </body>
 </html>
