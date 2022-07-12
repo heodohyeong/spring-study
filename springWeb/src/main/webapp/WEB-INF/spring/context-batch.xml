@@ -11,7 +11,7 @@
 	<!-- <context:component-scan base-package="com.devmg.app" />  -->
 	<!-- 스케쥴러 클래스 정의  -->
 	<bean id="sampleTest" class="my.first.spring.batch.SampleBatchController"/>
-	
+	 
     <bean id="jobBean" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
     	<property name="targetObject" ref="sampleTest" />  <!--컴포넌 설정 -->
     	<property name="targetMethod" value="sampleBatch" /> <!-- Method 설정 -->
