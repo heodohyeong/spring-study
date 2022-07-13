@@ -34,7 +34,7 @@
 		<property name="mapperLocations" value="classpath:mybatis/mappers/*.xml"/>
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-	 
+	  
 	 <!-- 
         SqlSession 인터페이스를 구현한 
         SqlSessionTemplate(SqlSession) 객체 
